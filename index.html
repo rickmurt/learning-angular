@@ -7,14 +7,21 @@
 	<body>
 		<div ng-app="myApp">
 
-			<div ng-controller="FirstCtrl">
-				<input type="text" ng-model="data.message">
-				<h1>{{ data.message }}</h1>
-			</div>
-
-			<div ng-controller="SecondCtrl">
-				<input type="text" ng-model="data.message">
-				<h1>{{ data.message | reverse }}</h1>
+			<div ng-controller="AvengersCtrl">
+				<!-- <input type="text" ng-model="searchText"> -->
+				<h3>Search by name</h3>
+				<input type="text" ng-model="search.name">
+				<h3>Search by character</h3>
+				<input type="text" ng-model="search.character">
+				<h3>Search by anything</h3>
+				<input type="text" ng-model="search.$">
+				<table>
+					<!-- <tr ng-repeat="actor in avengers.cast | filter:searchText"> -->
+					<tr ng-repeat="actor in avengers.cast | filter:search">
+						<td>{{ actor.name }}</td>
+						<td>{{ actor.character }}</td>
+					</tr>
+				</table>
 			</div>
 
 		</div>

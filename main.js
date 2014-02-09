@@ -1,25 +1,27 @@
 var myApp = angular.module('myApp', []);
 
-myApp.factory('Data', 
+myApp.factory('Avengers',
 	function() {
-		return {
-			message: "I'm data from a service"
-		};
+		var Avengers = {};
+		Avengers.cast = [
+			{
+				name: "Robert Downey Jr.",
+				character: "Tony Stark / Iron Man"
+			},
+			{
+				name: "Chris Evans",
+				character: "Steve Rogers / Captain America"
+			},
+			{
+				name: "Mark Ruffalo",
+				character: "Bruce Banner / The Hulk"
+			}
+		];
+
+		return Avengers;
 	}
 );
 
-myApp.filter('reverse', 
-	function () { // inject function(Data) as necessary
-  		return function (text) {
-    		return text.split("").reverse().join("");
-  		}
-	}
-);
-
-function FirstCtrl($scope, Data) {
-	$scope.data = Data;
-}
-
-function SecondCtrl($scope, Data) {
-	$scope.data = Data;
+function AvengersCtrl($scope, Avengers) {
+	$scope.avengers = Avengers;
 }
