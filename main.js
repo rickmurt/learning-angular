@@ -8,15 +8,18 @@ myApp.factory('Data',
 	}
 );
 
+myApp.filter('reverse', 
+	function () { // inject function(Data) as necessary
+  		return function (text) {
+    		return text.split("").reverse().join("");
+  		}
+	}
+);
+
 function FirstCtrl($scope, Data) {
 	$scope.data = Data;
 }
 
 function SecondCtrl($scope, Data) {
 	$scope.data = Data;
-
-	$scope.reversedMessage =
-		function(message) {
-			return message.split("").reverse().join("");
-		};
 }
