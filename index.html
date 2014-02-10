@@ -5,25 +5,8 @@
 		<link rel="stylesheet" href="vendor/foundation.min.css">
 	</head>
 	<body>
-		<div ng-app="myApp">
-
-			<div ng-controller="AvengersCtrl">
-				<!-- <input type="text" ng-model="searchText"> -->
-				<h3>Search by name</h3>
-				<input type="text" ng-model="search.name">
-				<h3>Search by character</h3>
-				<input type="text" ng-model="search.character">
-				<h3>Search by anything</h3>
-				<input type="text" ng-model="search.$">
-				<table>
-					<!-- <tr ng-repeat="actor in avengers.cast | filter:searchText"> -->
-					<tr ng-repeat="actor in avengers.cast | filter:search | orderBy:'name'  | limitTo: 5 ">
-						<td>{{ actor.name | lowercase }}</td>
-						<td>{{ actor.character | uppercase }}</td>
-					</tr>
-				</table>
-			</div>
-
+		<div ng-app="superhero">
+			<superman></superman>
 		</div>
 
 		<script type="text/javascript" src="vendor/angular.min.js"></script>
