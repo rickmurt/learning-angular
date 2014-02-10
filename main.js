@@ -1,25 +1,18 @@
-var app = angular.module("behaviorApp", []);
+var app = angular.module('twitterApp', []);
 
-app.directive("enter",
-	function() {
-		return function(scope, element, attrs) {
-			element.bind("mouseenter",
-				function() {
-					element.addClass(attrs.enter);
-				}
-			);
-		}
-	}
-);
+app.controller("AppCtrl", function ($scope) {
+  $scope.loadMoreTweets = function () {
+    alert("Loading tweets!");
+  }
+  $scope.deleteTweets = function () {
+    alert("deleting tweets!");
+  }
+})
 
-app.directive("leave",
-	function() {
-		return function(scope, element, attrs) {
-			element.bind("mouseleave",
-				function() {
-					element.removeClass(attrs.enter);
-				}
-			);
-		}
-	}
-);
+app.directive("enter", function () {
+  return function (scope, element, attrs) {
+    element.bind("mouseenter", function () {
+      scope.$apply(attrs.enter);
+    })
+  }
+})
