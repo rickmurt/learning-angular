@@ -5,33 +5,30 @@ app.config(function ($routeProvider) {
     .when('/',
     {
       templateUrl: "app.html",
-      controller: "AppCtrl",
+      controller: "ViewCtrl",
       resolve: {
-        loadData: appCtrl.loadData,
-        prepData: appCtrl.prepData
+        loadData: viewCtrl.loadData
       }
     }
   )
 });
  
-var appCtrl = app.controller("AppCtrl", function ($scope) {
+app.controller("AppCtrl", function ($rootScope) {
+  $rootScope.$on("$routeChangeError", function () {
+    console.log("failed to change routes");
+  });
+});
+ 
+var viewCtrl = app.controller("ViewCtrl", function ($scope) {
   $scope.model = {
     message: "I'm a great app!"
   }
 });
  
-appCtrl.loadData = function ($q, $timeout) {
+viewCtrl.loadData = function ($q, $timeout) {
   var defer = $q.defer();
   $timeout(function () {
-    defer.resolve("loadData"); 
-  }, 2000);
-  return defer.promise;
-};
- 
-appCtrl.prepData = function ($q, $timeout) {
-  var defer = $q.defer();
-  $timeout(function () {
-    defer.resolve("prepData"); 
+    defer.reject("loadData"); 
   }, 2000);
   return defer.promise;
 };
