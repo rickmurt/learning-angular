@@ -1,9 +1,18 @@
 var app = angular.module("app", []);
  
-app.config(function($logProvider){
-  $logProvider.debugEnabled(false);
-});
- 
-app.run(function($rootScope, $log){
-  $rootScope.$log = $log;
+app.directive("zippy", function(){
+ return {
+   restrict: "E",
+   transclude: true,
+   scope: {
+     title: "@"
+   },
+   templateUrl: "zippy.html",
+   link: function(scope){
+     scope.isContentVisible = false;
+     scope.toggleContent = function(){
+       scope.isContentVisible = !scope.isContentVisible;
+     }
+   }
+ };
 });

@@ -7,14 +7,18 @@
 	<body>
 
 		<div ng-app="app">
-		  <div
-		    class="button"
-		    ng-repeat="item in 'somewrd'.split('')"
-		    ng-click="$log.log($event)"
-		    >
-		    {{$index + 1}}. {{item}}
-		    {{$event.pageX}}
-		  </div>
+		  <script type="text/ng-template" id="zippy.html">
+		    <div><h3 ng-click="toggleContent()">{{title}}</h3>
+		      <div ng-show="isContentVisible" ng-transclude></div>
+		    </div>
+		  </script>
+		 
+		  <input type="text" ng-model="model.title">
+		  <input type="text" ng-model="model.content">
+		 
+		  <zippy title="{{model.title}}">
+		    The content is: {{model.content}}
+		  </zippy>
 		</div>
 
 		<script type="text/javascript" src="vendor/angular.min.js"></script>
