@@ -1,19 +1,23 @@
 var app = angular.module('phoneApp', []);
  
-app.controller("AppCtrl", function ($scope) {
-  $scope.callHome = function (message) {
-    alert(message);
+app.controller('AppController', function($scope){
+  $scope.leaveVoicemail = function(number, message){
+    alert('Number: ' + number + ' said: ' + message);
   };
 });
-
  
-app.directive("phone", function () {
+app.directive('phone', function(){
   return {
+    restrict: 'E',
     scope: {
-      dial: "&"
+      number: '@',
+      network: '=',
+      makeCall: '&'
     },
-    template: '<input type="text" ng-model="value">' +
-      '<div class="button" ng-click="dial({message:value})">' +
-      'Call home!</div>',
+    templateUrl: 'phone.html',
+    link: function(scope){
+        scope.networks = ["Verizon", "AT&T", "Sprint"];
+        scope.network = scope.networks[0];
+      }
   };
 });
