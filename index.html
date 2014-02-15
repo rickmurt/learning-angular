@@ -6,9 +6,9 @@
 	</head>
 	<body>
 
-		<div ng-app="phoneApp">
-		  <div ng-controller="AppCtrl">
-		    <div class="button" ng-click="AppCtrl.sayHi()">Click me!</div>
+		<div ng-app="app" ng-controller="RoomCtrl as room">
+		  <div class="button" ng-click="room.openDoor()">
+		    {{room.buttonTitle}}
 		  </div>
 		</div>
 

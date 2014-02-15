@@ -1,23 +1,9 @@
-var app = angular.module('phoneApp', []);
+var app = angular.module("app", [])
  
-var phoneAppStuff = {}
-phoneAppStuff.controllers = {};
-phoneAppStuff.directives = {};
-
-phoneAppStuff.controllers.AppCtrl = function ($scope) {
- this.sayHi = function () {
-    alert("hi");
+app.controller("RoomCtrl", function(){
+  this.openDoor= function(){
+    alert("creak");
   };
  
-  return $scope.AppCtrl = this;
-};
-
-
-phoneAppStuff.directives.panel = function () {
-  return {
-    restrict: "E"
-  };
-};
- 
-app.controller(phoneAppStuff.controllers);
-app.directive(phoneAppStuff.directives);
+  this.buttonTitle = "I'm a button";
+});
