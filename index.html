@@ -6,14 +6,10 @@
 	</head>
 	<body>
 	
-		<div ng-app="app">
-		  <country>
-		    <state> 
-		      <city>
-		        
-		      </city>
-		    </state>
-		  </country>
+		<div ng-app="choreApp">
+		  <div ng-controller="ChoreCtrl">
+		    <kid done="logChore(chore)"></kid>
+		  </div>
 		</div>
 
 		<script type="text/javascript" src="vendor/angular.min.js"></script>
