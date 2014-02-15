@@ -1,8 +1,17 @@
-<div ng-app="app">
-  <input type="text" ng-model="model.title">
-  <input type="text" ng-model="model.content">
- 
-  <zippy title="{{model.title}}">
-    The content is: {{model.content}}
-  </zippy>
-</div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Tutorials</title>
+		<link rel="stylesheet" href="vendor/foundation.min.css">
+	</head>
+	<body>
+
+		<div ng-app="app">
+		  <ng-view></ng-view>
+		</div>
+
+		<script type="text/javascript" src="vendor/angular.min.js"></script>
+		<script type="text/javascript" src="vendor/angular-route.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
