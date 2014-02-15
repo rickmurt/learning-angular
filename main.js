@@ -1,23 +1,20 @@
 var app = angular.module("app", ['ngRoute']);
-
+// http://localhost/learning-angular/#/map/usa/michigan/ann%20arbor
 app.config(function ($routeProvider) {
   $routeProvider
-    .when('/',
+    .when('/map/:country/:state/:city',
     {
       templateUrl: "app.html",
       controller: "AppCtrl"
-    })
-    .when('/pizza',
-    {
-      template: "Yum!!"
-    })
-    .otherwise({
-      template: "This doesn't exist!"
-    })
+    }
+  )
 });
-
-app.controller("AppCtrl", function($scope, $route) {
-	$scope.model = {
-		message: "This is my app!!!"
-	}
-})
+ 
+app.controller("AppCtrl", function ($scope, $routeParams) {
+  $scope.model = {
+    message: "Address: " +
+      $routeParams.country + ", " +
+      $routeParams.state + ", " +
+      $routeParams.city
+  }
+});
