@@ -10,7 +10,7 @@ app.config(function($routeProvider) {
 	)
 })
 
-app.controller("AppCtrl", function($scope) {
+app.controller("AppCtrl", function($scope, $route) {
 	$scope.model = {
 		message: "This is my app!!!"
 	}
