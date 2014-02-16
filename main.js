@@ -1,5 +1,5 @@
-var app = angular.module("app", ['ngRoute']);
-
+var app = angular.module('app', ['ngRoute']);
+ 
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/',
@@ -12,11 +12,21 @@ app.config(function ($routeProvider) {
     }
   )
 });
- 
-app.controller("AppCtrl", function ($rootScope) {
-  $rootScope.$on("$routeChangeError", function () {
-    console.log("failed to change routes");
-  });
+app.controller("AppCtrl", function () {
+});
+
+app.directive("error", function ($rootScope) {
+  return {
+    restrict: "E",
+    template: '<div class="alert-box alert" ng-show="isError">' +
+              'Error!!!!!</div>',
+    link: function (scope) {
+      $rootScope.$on("$routeChangeError", 
+                     function (event, current, previous, rejection) {
+        scope.isError = true;
+      });
+    }
+  }
 });
  
 var viewCtrl = app.controller("ViewCtrl", function ($scope) {
@@ -29,6 +39,7 @@ viewCtrl.loadData = function ($q, $timeout) {
   var defer = $q.defer();
   $timeout(function () {
     defer.reject("loadData"); 
+    // defer.resolve();
   }, 2000);
   return defer.promise;
 };
