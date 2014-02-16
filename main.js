@@ -1,21 +1,23 @@
-var app = angular.module('app', []);
+var app = angular.module("app",[]);
  
-app.directive("zippy", function(){
+app.provider("game", function () {
+  var type;
   return {
-    restrict: "E",
-    transclude: true,
-    scope: {
-      title: "@"
+    setType: function (value) {
+      type = value;
     },
-    template: '<div>' +
-      '<h3 ng-click="toggleContent()">{{title}}</h3>' +
-      '<div ng-show="isContentVisible" ng-transclude></div>' +
-      '</div>',
-    link: function(scope){
-      scope.isContentVisible = false;
-      scope.toggleContent = function(){
-        scope.isContentVisible = !scope.isContentVisible;
+    $get: function () {
+      return {
+        title: type + "Craft"
       };
     }
   };
-}); 
+});
+ 
+app.config(function (gameProvider) {
+  gameProvider.setType("War");
+});
+ 
+app.controller("AppCtrl", function ($scope, game) {
+  $scope.title = game.title;
+});
