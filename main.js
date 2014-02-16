@@ -1,23 +1,30 @@
-var app = angular.module("app",[]);
+var myApp = angular.module('myApp', []);
  
-app.provider("game", function () {
-  var type;
-  return {
-    setType: function (value) {
-      type = value;
-    },
-    $get: function () {
-      return {
-        title: type + "Craft"
-      };
-    }
-  };
+myApp.factory('Data', function () {
+  return { message: "I'm data from a service" }
 });
  
-app.config(function (gameProvider) {
-  gameProvider.setType("War");
+myApp.filter('reverse', function () {
+  return function (text) {
+    return text.split("").reverse().join("");
+  }
 });
  
-app.controller("AppCtrl", function ($scope, game) {
-  $scope.title = game.title; 
-});  
+function FirstCtrl($scope, Data) {
+  $scope.data = Data;
+}
+ 
+function SecondCtrl($scope, Data) {
+  $scope.data = Data;
+} 
+
+describe('filter', function () {
+  beforeEach(module('myApp'));
+ 
+  describe('reverse', function () {
+    it('should reverse a string', inject(function (reverseFilter) {
+      expect(reverseFilter('ABCD')).toEqual('DCBA');
+      expect(reverseFilter('John')).toEqual('nhoJ');
+    }))
+  })
+})
