@@ -19,5 +19,5 @@ app.config(function (gameProvider) {
 });
  
 app.controller("AppCtrl", function ($scope, game) {
-  $scope.title = game.title;
+  $scope.title = game.title; 
 });
